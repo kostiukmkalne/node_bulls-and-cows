@@ -9,25 +9,24 @@
  * @return {boolean} - True if the user input is valid, false otherwise
  */
 function checkIsValidUserInput(userInput) {
-  if (isNaN(userInput)) {
+  // Перевіряємо, чи введене значення є числом і має рівно 4 цифри
+  if (isNaN(userInput) || userInput.length !== 4) {
     // eslint-disable-next-line no-console
     console.log('Invalid input. Please enter a 4-digit number.');
 
     return false;
   }
 
-  const numbers = String(userInput)
-    .split('')
-    .map((n) => Number(n));
-
-  if (numbers[0] === 0 || numbers.length < 4) {
+  // Перевіряємо, чи не починається введене число з нуля
+  if (userInput[0] === '0') {
     // eslint-disable-next-line no-console
     console.log('Error. Enter a 4-digit number that doesnt start with 0.');
 
     return false;
   }
 
-  if (new Set(numbers).size !== numbers.length) {
+  // Перевіряємо на унікальність цифр
+  if (new Set(userInput).size !== userInput.length) {
     // eslint-disable-next-line no-console
     console.log('Error. Enter a 4-digit number that has only unique digits.');
 
